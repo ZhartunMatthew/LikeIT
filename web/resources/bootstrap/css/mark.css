@@ -1,0 +1,7 @@
+.story__rating-count {
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    font-size: 21px;
+    color: #9b9999;
+}
