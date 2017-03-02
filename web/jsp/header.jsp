@@ -23,7 +23,7 @@
                     <fmt:message key="login.loginform"/>
                 </h4>
             </div>
-            <form id="loginForm" class="form-signin" action="" method="POST">
+            <form id="loginForm" class="form-signin" action="/controller" method="POST">
                 <input type="hidden" value="login" name="command">
                 <div class="modal-body">
                     <div class="form-group">
