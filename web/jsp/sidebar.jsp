@@ -21,34 +21,37 @@
 <div class="col-md-4">
 
     <!-- Blog Search Well -->
-    <div class="well">
+    <c:if test="${sessionScope.user != null}">
+        <div class="well">
 
-        <div class="input-group">
-            <a class="btn btn-primary" href="">
-                <fmt:message key="ask.question"/>
-                <span class="glyphicon glyphicon-chevron-right"></span>
-            </a>
+            <div class="input-group">
+                <a class="btn btn-primary" href="">
+                    <fmt:message key="ask.question"/>
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </div>
         </div>
-    </div>
+    </c:if>
 
 
     <!-- Blog Categories Well -->
-    <div class="well">
-        <h4>
-            <fmt:message key="opportunities"/>:
-        </h4> <hr>
-        <form onsubmit="" action="" method="POST">
-            <b><fmt:message key="new.theme.create"/>:</b>
-            <input type="text" class="form-control" required  name="new_theme"
-                   placeholder=<fmt:message key="new.theme"/> >
-            <h5>
-                <button  class="btn btn-primary" type="submit" name="submit">
-                    <fmt:message key="ready"/>
-                </button>
-            </h5>
-        </form>
-    </div>
-
+    <c:if test="${sessionScope.user.role == 1}">
+        <div class="well">
+            <h4>
+                <fmt:message key="opportunities"/>:
+            </h4> <hr>
+            <form onsubmit="" action="" method="POST">
+                <b><fmt:message key="new.theme.create"/>:</b>
+                <input type="text" class="form-control" required  name="new_theme"
+                       placeholder=<fmt:message key="new.theme"/> >
+                <h5>
+                    <button  class="btn btn-primary" type="submit" name="submit">
+                        <fmt:message key="ready"/>
+                    </button>
+                </h5>
+            </form>
+        </div>
+    </c:if>
 
     <!-- Side Widget Well
     <div class="well">

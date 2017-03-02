@@ -22,21 +22,23 @@
 <div class="well col-lg-offset-2 col-lg-5" >
     <p>
         <b><fmt:message key="login"/>: </b>
-        USER LOGIN
+        <c:out value="${user.login}"/>
     </p>
     <p>
         <b><fmt:message key="rating"/>: </b>
-        USER RATING
+        <c:out value="${user.rating}"/>
     </p>
     <p>
         <b><fmt:message key="regdate"/> :</b>
-        USER REG DATE
+        <c:out value="${user.registrationDate}"/>
     </p>
-    <p>
-        <button  class="btn btn-default" type="submit" onclick=" location.href = ''">
-                <fmt:message key="profile.edit"/>
-        </button>
-    </p>
+    <c:if test="${sessionScope.user.id == user.id}">
+        <p>
+            <button  class="btn btn-default" type="submit" onclick="location.href = 'jsp/profile_change.jsp'">
+                    <fmt:message key="profile.edit"/>
+            </button>
+        </p>
+    </c:if>
 </div>
 
 <c:import url="sidebar.jsp"/>
