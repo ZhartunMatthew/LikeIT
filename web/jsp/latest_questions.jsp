@@ -32,70 +32,28 @@
             </h1>
 
             <!-- Third Blog Post -->
-
+            <c:forEach var="question" items="${questions}">
                 <h2>
-                    <a href="">
-                        QUESTION TITLE
+                    <a href="/controller?command=showquestion&questionid=${question.id}">
+                        <c:out value="${question.title}"/>
                     </a>
                 </h2>
                 <p class="lead">
-                    <small> <a href=""/>
-                    USER LOGIN
+                    <small> <a href="/controller?command=showprofile&userid=${question.user.id}"/>
+                    <c:out value="${question.user.login}"/>
                     </a>
                     </small>
                 </p>
                 <p>
-                    <span class="glyphicon glyphicon-time"></span> CREATING TIME
-                    <span class="glyphicon glyphicon-star-empty"></span> THEME
+                    <span class="glyphicon glyphicon-time"></span> <c:out value="${question.creatingTime}"/>
+                    <span class="glyphicon glyphicon-star-empty"></span> <c:out value="${question.theme.name}"/>
                 </p>
-                <a class="btn btn-primary" href="">
+                <a class="btn btn-primary" href="/controller?command=showquestion&questionid=${question.id}">
                     <fmt:message key="question.read"/>
                     <span class="glyphicon glyphicon-chevron-right"></span>
                 </a>
                 <hr>
-
-                <h2>
-                    <a href="">
-                        QUESTION TITLE
-                    </a>
-                </h2>
-                <p class="lead">
-                    <small> <a href=""/>
-                    USER LOGIN
-                    </a>
-                    </small>
-                </p>
-                <p>
-                    <span class="glyphicon glyphicon-time"></span> CREATING TIME
-                    <span class="glyphicon glyphicon-star-empty"></span> THEME
-                </p>
-                <a class="btn btn-primary" href="">
-                    <fmt:message key="question.read"/>
-                    <span class="glyphicon glyphicon-chevron-right"></span>
-                </a>
-                <hr>
-
-                <h2>
-                    <a href="">
-                        QUESTION TITLE
-                    </a>
-                </h2>
-                <p class="lead">
-                    <small> <a href=""/>
-                    USER LOGIN
-                    </a>
-                    </small>
-                </p>
-                <p>
-                    <span class="glyphicon glyphicon-time"></span> CREATING TIME
-                    <span class="glyphicon glyphicon-star-empty"></span> THEME
-                </p>
-                <a class="btn btn-primary" href="">
-                    <fmt:message key="question.read"/>
-                    <span class="glyphicon glyphicon-chevron-right"></span>
-                </a>
-                <hr>
-
+            </c:forEach>
             <hr>
 
         </div>
