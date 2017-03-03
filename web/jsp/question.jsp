@@ -33,81 +33,100 @@
             <!-- Blog Post -->
 
             <!-- Title -->
-            <h1>QUESTION TITLE</h1>
+            <h1><c:out value="${question.title}"/></h1>
 
             <!-- Author -->
             <p class="lead">
-                <small><a href="">
-                    USER LOGIN</a> </small>
+                <small><a href="/controller?command=showprofile&userid=${question.user.id}">
+                    <c:out value="${question.user.login}"/></a> </small>
             </p>
 
             <!-- Date/Time -->
             <p>
-                <span class="glyphicon glyphicon-time"></span> CREATING TIME
-                <span class="glyphicon glyphicon-star-empty"></span> THEME
+                <span class="glyphicon glyphicon-time"></span> <c:out value="${question.creatingTime}"/>
+                <span class="glyphicon glyphicon-star-empty"></span> <c:out value="${question.theme.name}"/>
+                <c:if test="${sessionScope.user.id == question.user.id || sessionScope.user.role == 1}">
+
                     <a class="btn btn-default btn-xs"
-                       href="">
+                       href="/controller?command=deletequestion&questionid=${question.id}">
                         <fmt:message key="delete"/>
                     </a>
-                
+                </c:if>
             </p>
 
             <hr>
 
 
             <!-- Post Content -->
-            QUESTION 
+            ${content}
             <hr>
 
             <!-- Blog Comments -->
 
             <!-- Comments Form -->
+            <c:if test="${sessionScope.user != null}">
 
                 <div class="well">
                     <h4>
                         <fmt:message key="answer.leave"/>:
                     </h4>
-                    <form role="form" action="" method="POST">
+                    <form role="form" action="/controller?command=addanswer" method="POST">
                         <div class="form-group">
                             <textarea class="form-control" rows="3" name="new_answer"></textarea>
                         </div>
+                        <input type="hidden" value="${question.id}" name="questionid">
                         <button type="submit" class="btn btn-primary">
                             <fmt:message key="answer"/>
                         </button>
                     </form>
                 </div>
+            </c:if>
 
             <hr>
 
             <!-- Posted Comments -->
 
             <!-- Comment -->
+            <c:forEach var="answer" items="${answers}">
                 <div class="media">
                     <div class="media-body">
                         <h4 class="media-heading">
-                            <form action="" method="post">
-                                <a href="">
-                                    USER LOGIN
+                            <form action="/controller" method="post">
+                                <a href="/controller?command=showprofile&userid=${answer.user.id}">
+                                    <c:out value="${answer.user.login}"/>
                                 </a>
-                                <small>CREATING TIME</small>
-                                
-                                <a class="btn btn-default btn-xs"
-                                   href="">
-                                    <fmt:message key="delete"/>
-                                </a>
-                               
-                                <button type="submit" class="btn btn-default btn-xs">
-                                    +1
-                                </button>
-                                <button type="submit" class="btn btn-default btn-xs">
-                                    -1
-                                </button>
+                                <small><c:out value="${answer.creatingTime}"/></small>
+                                <c:if test="${sessionScope.user.id == answer.user.id || sessionScope.user.role == 1}">
+
+                                    <a class="btn btn-default btn-xs"
+                                       href="/controller?command=deleteanswer&answerid=${answer.id}&questionid=${question.id}">
+                                        <fmt:message key="delete"/>
+                                    </a>
+
+                                </c:if>
+                                <c:if test="${sessionScope.user != null}">
+                                    <input id="request_mark${answer.id}" type="hidden" name="mark" value="">
+                                    <input type="hidden" value="estimate" name="command">
+                                    <input type="hidden" name="answer_author" value="${answer.user.id}">
+                                    <input type="hidden" name="answer" value="${answer.id}">
+                                    <input type="hidden" name="question" value="${question.id}">
+
+                                    <button type="submit" class="btn btn-default btn-xs"
+                                            onclick="document.getElementById('request_mark' + ${answer.id}).value=1">
+                                        +1
+                                    </button>
+                                    <button type="submit" class="btn btn-default btn-xs"
+                                            onclick="document.getElementById('request_mark' + ${answer.id}).value=-1">
+                                        -1
+                                    </button>
+                                </c:if>
                             </form>
                         </h4>
-                        ANSWER
+                        <c:out value="${answer.answer}"/>
                     </div>
                 </div>
                 <hr>
+            </c:forEach>
 
 
         </div>
