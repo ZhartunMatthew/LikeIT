@@ -24,17 +24,14 @@
     <h4>
         <fmt:message key="question.input"/>
     </h4>
-    <form action="/controller?command=addquestion" method="POST">
+    <form action="" method="POST">
         <div class="form-group">
             <input class="form-control" name="title"
                    placeholder=<fmt:message key="title"/> >
         </div>
         <div class="form-group">
-
             <select name="themeid">
-                <c:forEach var="theme" items="${themes}">
-                    <option value="${theme.id}">${theme.name}</option>
-                </c:forEach>
+                <option>Java</option>
             </select>
         </div>
         <div class="form-group">
