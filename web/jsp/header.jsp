@@ -55,7 +55,7 @@
                     <fmt:message key="signup.form"/>
                 </h4>
             </div>
-            <form id="signUpForm" class="form-signin" action="" method="POST">
+            <form id="signUpForm" class="form-signin" action="/controller?command=signup" method="POST">
                 <div class="modal-body">
                     <div class="form-group">
                         <input type="text" name="login" class="form-control" required
@@ -98,26 +98,28 @@
                 <div class="collapse navbar-collapse" id="responsive-menu">
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="">
+                            <a href="/controller?command=showallquestions">
                                 <fmt:message key="nav.questions"/>
                             </a>
                         </li>
+                        <c:if test="${sessionScope.user != null}">
                             <li>
-                                <a href="">
+                                <a href="/controller?command=showprofile&userid=${sessionScope.user.id}">
                                     <fmt:message key="nav.myProfile"/>
                                 </a>
                             </li>
-
+                        </c:if>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <fmt:message key="nav.language"/><b class="caret"></b>
                             </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="">English</a></li>
-                                    <li><a href="">Русский</a></li>
+                                    <li><a href=/controller?command=changelanguage&lang=EN">English</a></li>
+                                    <li><a href="/controller?command=changelanguage&lang=ru_RU">Русский</a></li>
                                 </ul>
                         </li>
                     </ul>
+                    <c:if test="${sessionScope.user == null}">
                         <form action="" class="navbar-form navbar-right">
                             <a class="btn btn-primary form-control" href="#" data-toggle="modal"
                                data-target="#basicModal">
@@ -133,11 +135,14 @@
                                 <fmt:message key="signup"/>
                             </a>
                         </form>
-                        <form action="" method="POST" class="navbar-form navbar-right">
+                    </c:if>
+                    <c:if test="${sessionScope.user != null}">
+                        <form action="/controller?command=logout" method="POST" class="navbar-form navbar-right">
                             <button class="btn btn-primary" type="submit" name="logout">
                                 <fmt:message key="logout"/>
                             </button>
                         </form>
+                    </c:if>
                 </div>
             </div>
         </div>
