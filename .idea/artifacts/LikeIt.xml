@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="LikeIt">
+    <output-path>$PROJECT_DIR$/out/artifacts/LikeIt</output-path>
+    <root id="archive" name="LikeIt.war">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="LikeIT" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="LikeIT/web/Web" />
+    </root>
+  </artifact>
+</component>

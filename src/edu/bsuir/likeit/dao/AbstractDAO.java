@@ -3,10 +3,9 @@ package edu.bsuir.likeit.dao;
 
 import edu.bsuir.likeit.connectionpool.ConnectionPool;
 import edu.bsuir.likeit.connectionpool.ConnectionPoolException;
-import edu.bsuir.likeit.connectionpool.ProxyConnection;
 
 abstract class AbstractDAO implements AutoCloseable {
-    ProxyConnection connection;
+    Connection connection;
 
     AbstractDAO() throws DAOException {
         try {
